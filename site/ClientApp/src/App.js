@@ -15,7 +15,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <MainLayout Patient={this.state} NextPatient={this.fetchPatientData}></MainLayout>
+            <MainLayout Patient={this.state} NextPatientCallback={this.fetchPatientData}></MainLayout>
         );
     }
 

@@ -21,10 +21,7 @@ export default function MainLayout(props) {
 
     return (
         <div className={classes.wrapper}>
-            <Sidebar>
-                <p>{props.Patient.firstName}</p>
-                <Button color="primary" onClick={props.NextPatient}>Default</Button>
-            </Sidebar>
+            <Sidebar Patient={props.Patient} NextPatientCallback={props.NextPatientCallback}/>
             <div className={classes.mainPanel}>
                         <CustomTabs
                             title=""

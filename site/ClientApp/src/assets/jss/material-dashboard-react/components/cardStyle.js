@@ -13,8 +13,7 @@ const cardStyle = {
         color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
         background: whiteColor,
         width: "98%",
-        height: "calc(100vh - 50px)",
-        boxShadow: "0 1px 4px 0 rgba(" + hexToRgb(blackColor) + ", 0.14)",
+        height: "calc(100vh - 50px)",        
         position: "relative",
         display: "flex",
         flexDirection: "column",
@@ -29,6 +28,9 @@ const cardStyle = {
     cardProfile: {
         marginTop: "30px",
         textAlign: "center"
+    },
+    cardShadow: {
+        boxShadow: "0 1px 4px 0 rgba(" + hexToRgb(blackColor) + ", 0.14)",
     },
     cardChart: {
         "& p": {
