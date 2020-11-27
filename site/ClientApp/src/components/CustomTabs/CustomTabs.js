@@ -68,7 +68,7 @@ export default function CustomTabs(props) {
             <CardBody>
                 {tabs.map((prop, key) => {
                     if (key === value) {
-                        return <div className={classes.tabContent} key={key}>{prop.tabContent}</div>;
+                        return <div key={key}>{prop.tabContent}</div>;
                     }
                     return null;
                 })}
