@@ -57,6 +57,9 @@ export default function MainLayout(props) {
     const start = new Date(2016, 0, 1);
     const end = Date.now();
     const lastAppointment = new Date(+start + Math.random() * (end - start));
+    const poll1 = new Date(+start + Math.random() * (end - start));
+    const poll2 = new Date(+start + Math.random() * (end - start));
+    const poll3 = new Date(+start + Math.random() * (end - start));
 
     return (
         <div className={classes.wrapper}>
@@ -70,11 +73,28 @@ export default function MainLayout(props) {
                             tabName: "Карточка",
                             tabIcon: DescriptionIcon,
                             tabContent: (
-
                                 <Grid container className={classes.fullWidthGrid} spacing={2}>
-                                    <Grid item xs={3}>
-                                        <Grid container spacing={5}>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={6}>
+                                                <Card shadow>
+                                                    <CardHeader color="info" icon>
+                                                        <CardIcon color="info">
+                                                            <DateRangeIcon />
+                                                        </CardIcon>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <h4 className={classes.cardTitle}>Дата последнего осмотра {lastAppointment.toLocaleDateString()}</h4>
+                                                    </CardBody>
+                                                </Card>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Grid container spacing={4}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Пол"
                                                     fullWidth={true}
@@ -84,7 +104,7 @@ export default function MainLayout(props) {
                                                     }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Наличие сахарного диабета"
                                                     value={(Patient.diabetic) ? "Да" : "Нет"}
@@ -102,7 +122,7 @@ export default function MainLayout(props) {
                                                             }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Курение"
                                                     value={(Patient.smoker) ? "Да" : "Нет"}
@@ -120,7 +140,7 @@ export default function MainLayout(props) {
                                                             }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Рост"
                                                     value={`${Patient.height} см`}
@@ -130,7 +150,7 @@ export default function MainLayout(props) {
                                                     }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Вес"
                                                     value={`${Patient.weight} кг`}
@@ -148,7 +168,7 @@ export default function MainLayout(props) {
                                                             }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Артериальное давление"
                                                     value={`${Patient.sbp} / ${Patient.dbp}`}
@@ -166,7 +186,7 @@ export default function MainLayout(props) {
                                                             }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Общий холестерин"
                                                     value={`${Patient.cholesterol.toString()[0]},${Patient.cholesterol.toString()[1]} ммоль/л`}
@@ -184,7 +204,7 @@ export default function MainLayout(props) {
                                                             }}
                                                 />
                                             </Grid>
-                                            <Grid item className={classes.fullWidthGrid}>
+                                            <Grid item xs={4}>
                                                 <TextField
                                                     label="Содержание глюкозы в крови"
                                                     value={`${Patient.sugar.toString()[0]},${Patient.sugar.toString()[1]} ммоль/л`}
@@ -204,24 +224,6 @@ export default function MainLayout(props) {
                                             </Grid>
                                         </Grid>
                                     </Grid>
-                                    <Grid item xs={7}>
-                                        <Grid item>
-                                            <Card shadow>
-                                                <CardHeader color="info" icon>
-                                                    <CardIcon color="info">
-                                                        <DateRangeIcon />
-                                                    </CardIcon>
-                                                </CardHeader>
-                                                <CardBody>
-                                                    <h3 className={classes.cardTitle}>Дата последнего осмотра</h3>
-                                                    <h4>{lastAppointment.toLocaleDateString()}</h4>
-                                                </CardBody>
-                                            </Card>
-                                        </Grid>
-                                        <Grid item>
-
-                                        </Grid>
-                                    </Grid>
                                 </Grid>
                             )
                         },
@@ -229,21 +231,96 @@ export default function MainLayout(props) {
                             tabName: "Физическая активность",
                             tabIcon: DirectionsBikeIcon,
                             tabContent: (
-                                <p>Оценка физической активности (IPAQ)</p>
+                                <Grid container className={classes.fullWidthGrid} spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={6}>
+                                                <Card shadow>
+                                                    <CardHeader color="info" icon>
+                                                        <CardIcon color="info">
+                                                            <DateRangeIcon />
+                                                        </CardIcon>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <h4 className={classes.cardTitle}>Дата анкетирования {poll1.toLocaleDateString()}</h4>
+                                                    </CardBody>
+                                                </Card>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={4}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             )
                         },
                         {
                             tabName: "Социальные факторы",
                             tabIcon: PeopleOutline,
                             tabContent: (
-                                <p>Социальные факторы</p>
+                                <Grid container className={classes.fullWidthGrid} spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={6}>
+                                                <Card shadow>
+                                                    <CardHeader color="info" icon>
+                                                        <CardIcon color="info">
+                                                            <DateRangeIcon />
+                                                        </CardIcon>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <h4 className={classes.cardTitle}>Дата анкетирования {poll2.toLocaleDateString()}</h4>
+                                                    </CardBody>
+                                                </Card>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={4}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             )
                         },
                         {
                             tabName: "Окружающая среда",
                             tabIcon: Eco,
                             tabContent: (
-                                <p>Окружающая среда</p>
+                                <Grid container className={classes.fullWidthGrid} spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={6}>
+                                                <Card shadow>
+                                                    <CardHeader color="info" icon>
+                                                        <CardIcon color="info">
+                                                            <DateRangeIcon />
+                                                        </CardIcon>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <h4 className={classes.cardTitle}>Дата анкетирования {poll3.toLocaleDateString()}</h4>
+                                                    </CardBody>
+                                                </Card>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={4}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             )
                         },
                         {
