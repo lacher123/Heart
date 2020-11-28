@@ -13,13 +13,15 @@ const cardStyle = {
         color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
         background: whiteColor,
         width: "98%",
-        minHeight: "calc(100vh - 50px)",        
         position: "relative",
         display: "flex",
         flexDirection: "column",
         minWidth: "0",
         wordWrap: "break-word",
         fontSize: ".875rem"
+    },
+    fullscreenCard: {
+        minHeight: "calc(100vh - 50px)"
     },
     cardPlain: {
         background: "transparent",

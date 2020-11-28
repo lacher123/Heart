@@ -42,6 +42,7 @@ namespace ai_center_final
         public int Weight { get; }
         public int Height { get; }
         public int Cholesterol { get; }
+        public int Sugar { get; }
         public bool Smoker { get; }
         public bool Diabetic { get; }
         public Patient()
@@ -60,6 +61,7 @@ namespace ai_center_final
             this.Weight = rng.Next(60, 120);
             this.Height = rng.Next(160, 200);
             this.Cholesterol = rng.Next(30, 70);
+            this.Sugar = rng.Next(30, 80);
             this.Smoker = (s > 0);
             this.Diabetic =(d > 0);
         }

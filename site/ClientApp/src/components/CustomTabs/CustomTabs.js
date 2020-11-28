@@ -29,7 +29,7 @@ export default function CustomTabs(props) {
         [classes.cardTitleRTL]: rtlActive
     });
     return (
-        <Card plain={plainTabs}>
+        <Card plain={plainTabs} fullscreen>
             <CardHeader color={headerColor} plain={plainTabs}>
                 {title !== undefined ? <div className={cardTitle}>{title}</div> : null}
                 <Tabs
