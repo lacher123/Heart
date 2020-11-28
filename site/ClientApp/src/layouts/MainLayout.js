@@ -1,9 +1,7 @@
 ﻿import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "components/CustomButtons/Button.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import CustomTabs from "components/CustomTabs/CustomTabs.js";
-import Footer from "components/Footer/Footer.js";
 import DescriptionIcon from '@material-ui/icons/Description';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -17,53 +15,53 @@ export default function MainLayout(props) {
 
     const classes = useStyles();
 
-    console.log(props);
+    const { NextPatientCallback, Patient } = props;
 
     return (
         <div className={classes.wrapper}>
-            <Sidebar Patient={props.Patient} NextPatientCallback={props.NextPatientCallback}/>
+            <Sidebar Patient={Patient} NextPatientCallback={NextPatientCallback} />
             <div className={classes.mainPanel}>
-                        <CustomTabs
-                            title=""
-                            headerColor="primary"
-                            tabs={[
-                                {
-                                    tabName: "Карточка",
-                                    tabIcon: DescriptionIcon,
-                                    tabContent: (
-                                        <p>Карточка</p>
-                                    )
-                                },
-                                {
-                                    tabName: "IPAQ",
-                                    tabIcon: EmojiPeopleIcon,
-                                    tabContent: (
-                                        <p>IPAQ</p>
-                                    )
-                                },
-                                {
-                                    tabName: "SCORE",
-                                    tabIcon: FavoriteIcon,
-                                    tabContent: (
-                                        <p>SCORE</p>
-                                    )
-                                },
-                                {
-                                    tabName: "Риск",
-                                    tabIcon: WarningIcon,
-                                    tabContent: (
-                                        <p>Риск</p>
-                                    )
-                                },
-                                {
-                                    tabName: "Рекомендации",
-                                    tabIcon: InfoIcon,
-                                    tabContent: (
-                                        <p>Рекомендации</p>
-                                    )
-                                }
-                            ]}
-                        />
+                <CustomTabs
+                    title={`${Patient.lastName} ${Patient.firstName[0]}.${Patient.middleName[0]}.`}
+                    headerColor="primary"
+                    tabs={[
+                        {
+                            tabName: "Карточка",
+                            tabIcon: DescriptionIcon,
+                            tabContent: (
+                                <p>Карточка</p>
+                            )
+                        },
+                        {
+                            tabName: "IPAQ",
+                            tabIcon: EmojiPeopleIcon,
+                            tabContent: (
+                                <p>IPAQ</p>
+                            )
+                        },
+                        {
+                            tabName: "SCORE",
+                            tabIcon: FavoriteIcon,
+                            tabContent: (
+                                <p>SCORE</p>
+                            )
+                        },
+                        {
+                            tabName: "Риск",
+                            tabIcon: WarningIcon,
+                            tabContent: (
+                                <p>Риск</p>
+                            )
+                        },
+                        {
+                            tabName: "Рекомендации",
+                            tabIcon: InfoIcon,
+                            tabContent: (
+                                <p>Рекомендации</p>
+                            )
+                        }
+                    ]}
+                />
             </div>
         </div>
     );

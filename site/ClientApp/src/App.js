@@ -5,7 +5,13 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            city: "",
+            firstName: "",
+            gender: "",
+            lastName: "",
+            middleName: ""
+        };
         this.fetchPatientData = this.fetchPatientData.bind(this);
     }
 
