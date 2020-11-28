@@ -251,9 +251,21 @@ export default function MainLayout(props) {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Grid container>
-                                            <Grid item xs={4}>
-                                            </Grid>
+                                        <Grid container spacing={4}>
+                                            {Patient.prediction.features.map((row) => (
+                                                (row.category === 1) ?
+                                                    <Grid item xs={4}>
+                                                        <TextField
+                                                            label={row.feature}
+                                                            value={row.currentContribution}
+                                                            fullWidth={true}
+                                                            InputProps={{
+                                                                readOnly: true,
+                                                            }}
+                                                        />
+                                                    </Grid>
+                                                    : ""
+                                            ))}
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -283,9 +295,21 @@ export default function MainLayout(props) {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Grid container>
-                                            <Grid item xs={4}>
-                                            </Grid>
+                                        <Grid container spacing={4}>
+                                            {Patient.prediction.features.map((row) => (
+                                                (row.category === 2) ?
+                                                    <Grid item xs={4}>
+                                                        <TextField
+                                                            label={row.feature}
+                                                            value={row.currentContribution}
+                                                            fullWidth={true}
+                                                            InputProps={{
+                                                                readOnly: true,
+                                                            }}
+                                                        />
+                                                    </Grid>
+                                                    : ""
+                                            ))}
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -315,9 +339,21 @@ export default function MainLayout(props) {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Grid container>
-                                            <Grid item xs={4}>
-                                            </Grid>
+                                        <Grid container spacing={4}>
+                                            {Patient.prediction.features.map((row) => (
+                                                (row.category === 3) ?
+                                                    <Grid item xs={4}>
+                                                        <TextField
+                                                            label={row.feature}
+                                                            value={row.currentContribution}
+                                                            fullWidth={true}
+                                                            InputProps={{
+                                                                readOnly: true,
+                                                            }}
+                                                        />
+                                                    </Grid>
+                                                    : ""
+                                            ))}
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -373,7 +409,7 @@ export default function MainLayout(props) {
                                                     <TableBody>
                                                         {Patient.prediction.features.map((row) => (
                                                             (row.currentContribution > 15) ?
-                                                                <StyledTableRow key={row.name}>
+                                                                <StyledTableRow>
                                                                     <StyledTableCell component="th" scope="row">
                                                                         {row.feature}
                                                                     </StyledTableCell>

@@ -41,6 +41,7 @@ export default class App extends Component {
         const rndPrediction = {
             ...{
                 features: [...predictions.features],
+                categories: [...predictions.categories],
                 currentContributions: [...predictions.contributions[r]],
                 currentRisk: predictions.predictions[r]
             }
@@ -49,6 +50,7 @@ export default class App extends Component {
         for (let i = 0; i < rndPrediction.features.length; i++) {
             prediction.features.push({
                 feature: rndPrediction.features[i],
+                category: rndPrediction.categories[i], 
                 currentContribution: Math.floor(Math.abs(rndPrediction.currentContributions[i][0])*1000),
                 tunedContribution: Math.floor(Math.abs(rndPrediction.currentContributions[i][0])*1000)
                 });
@@ -57,7 +59,6 @@ export default class App extends Component {
         const data = {
             ...patient, prediction: { ...prediction }
         };
-        //console.log(data.prediction);
         this.setState(data);
     }
 }
