@@ -39,7 +39,7 @@ namespace ai_center_final
             this.FirstName = ((g > 0) ? Male_names[rng.Next(Male_names.Length)] : Female_names[rng.Next(Female_names.Length)]);
             this.MiddleName = Middlenames[rng.Next(Middlenames.Length)] + ((g > 0) ? "ич" : "на");
             this.LastName = Surnames[rng.Next(Surnames.Length)] + ((g > 0) ? "" : "а");
-            this.Gender = ((g > 0) ? "Мужчина" : "Женщина");
+            this.Gender = ((g > 0) ? "m" : "f");
         }
     }
 }
