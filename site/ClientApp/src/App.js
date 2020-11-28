@@ -10,7 +10,8 @@ export default class App extends Component {
             firstName: "",
             gender: "",
             lastName: "",
-            middleName: ""
+            middleName: "",
+            cholesterol: 0
         };
         this.fetchPatientData = this.fetchPatientData.bind(this);
     }

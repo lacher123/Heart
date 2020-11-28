@@ -4,10 +4,11 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import CustomTabs from "components/CustomTabs/CustomTabs.js";
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import DescriptionIcon from '@material-ui/icons/Description';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import WarningIcon from '@material-ui/icons/Warning';
 import InfoIcon from '@material-ui/icons/Info';
 
@@ -34,66 +35,119 @@ export default function MainLayout(props) {
                             tabIcon: DescriptionIcon,
                             tabContent: (
 
-                                <Grid container className={classes.root} spacing={2}>
-                                    <Grid item xs={3} fullWidth={true}>
-                                        <Grid container spacing={5} fullWidth={true}>
-                                            <Grid item>
+                                <Grid container className={classes.fullWidthGrid} spacing={2}>
+                                    <Grid item xs={3}>
+                                        <Grid container spacing={5}>
+                                            <Grid item className={classes.fullWidthGrid}>
                                                 <TextField
                                                     label="Пол"
+                                                    fullWidth={true}
                                                     value={((Patient.gender === "m") ? "Мужчина" : "Женщина")}
                                                     InputProps={{
                                                         readOnly: true,
                                                     }}
-                                                />
+                                                    />
                                             </Grid>
-                                            <Grid item>
+                                            <Grid item className={classes.fullWidthGrid}>
                                                 <TextField
-                                                    label="Рост"
-                                                    value="180 см"
-                                                    InputProps={{
-                                                        readOnly: true,
-                                                    }}
-                                                />
-                                            </Grid>
-                                            <Grid item>
-                                                <TextField
-                                                    label="Вес"
-                                                    value="80 кг"
-                                                    InputProps={{
-                                                        readOnly: true,
-                                                    }}
-                                                />
-                                            </Grid>
-                                            <Grid item fullWidth={true}>
-                                                <TextField
-                                                    label="Давление"
-                                                    value="120 / 80"
+                                                    label="Наличие сахарного диабета"
+                                                    value={(Patient.diabetic) ? "Да" : "Нет"}
                                                     fullWidth={true}
-                                                    InputProps={{
-                                                        readOnly: true,
-                                                    }}
+                                                    InputProps={
+                                                        (Patient.diabetic) ? {
+                                                            readOnly: true,
+                                                            startAdornment: (
+                                                                <InputAdornment position="start">
+                                                                    <WarningIcon color="error" />
+                                                                </InputAdornment>
+                                                            )
+                                                        } : {
+                                                                readOnly: true
+                                                            }}
                                                 />
                                             </Grid>
-                                            <Grid item fullWidth={true}>
+                                            <Grid item className={classes.fullWidthGrid}>
                                                 <TextField
                                                     label="Курение"
-                                                    value="Да"
+                                                    value={(Patient.smoker) ? "Да" : "Нет"}
                                                     fullWidth={true}
-                                                    InputProps={{
-                                                        readOnly: true,
-                                                    }}
+                                                    InputProps={
+                                                        (Patient.smoker) ? {
+                                                            readOnly: true,
+                                                            startAdornment: (
+                                                                <InputAdornment position="start">
+                                                                    <WarningIcon color="error" />
+                                                                </InputAdornment>
+                                                            )
+                                                        } : {
+                                                                readOnly: true
+                                                            }}
                                                 />
                                             </Grid>
-                                            <Grid item fullWidth={true}>
+                                            <Grid item className={classes.fullWidthGrid}>
                                                 <TextField
-                                                    label="Холестерин"
-                                                    value="5,2 ммоль/л"
+                                                    label="Рост"
+                                                    value={`${Patient.height} см`}
                                                     fullWidth={true}
                                                     InputProps={{
                                                         readOnly: true,
                                                     }}
                                                 />
                                             </Grid>
+                                            <Grid item className={classes.fullWidthGrid}>
+                                                <TextField
+                                                    label="Вес"
+                                                    value={`${Patient.weight} кг`}
+                                                    fullWidth={true}
+                                                    InputProps={
+                                                        ((Patient.height - Patient.weight - 110) < 0) ? {
+                                                            readOnly: true,
+                                                            startAdornment: (
+                                                                <InputAdornment position="start">
+                                                                    <WarningIcon color="error" />
+                                                                </InputAdornment>
+                                                            )
+                                                        } : {
+                                                                readOnly: true
+                                                        }}
+                                                />
+                                            </Grid>
+                                            <Grid item className={classes.fullWidthGrid}>
+                                                <TextField
+                                                    label="Артериальное давление"
+                                                    value={`${Patient.sbp} / ${Patient.dbp}`}
+                                                    fullWidth={true}
+                                                    InputProps={
+                                                        (((Patient.sbp) > 130) || ((Patient.dbp) > 85)) ? {
+                                                            readOnly: true,
+                                                            startAdornment: (
+                                                                <InputAdornment position="start">
+                                                                    <WarningIcon color="error" />
+                                                                </InputAdornment>
+                                                            )
+                                                        } : {
+                                                                readOnly: true
+                                                            }}
+                                                />
+                                            </Grid>
+                                            <Grid item className={classes.fullWidthGrid}>
+                                                <TextField
+                                                    label="Общий холестерин"
+                                                    value={`${Patient.cholesterol.toString()[0]},${Patient.cholesterol.toString()[1]} ммоль/л`}
+                                                    fullWidth={true}
+                                                    InputProps={
+                                                        (Patient.cholesterol > 45) ? {
+                                                            readOnly: true,
+                                                            startAdornment: (
+                                                                <InputAdornment position="start">
+                                                                    <WarningIcon color="error" />
+                                                                </InputAdornment>
+                                                            )
+                                                        } : {
+                                                                readOnly: true
+                                                            }}
+                                                />
+                                            </Grid>                                            
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={7}>
@@ -103,17 +157,17 @@ export default function MainLayout(props) {
                             )
                         },
                         {
-                            tabName: "IPAQ",
-                            tabIcon: EmojiPeopleIcon,
+                            tabName: "Оценка физической активности (IPAQ)",
+                            tabIcon: DirectionsBikeIcon,
                             tabContent: (
-                                <p>IPAQ</p>
+                                <p>Оценка физической активности (IPAQ)</p>
                             )
                         },
                         {
-                            tabName: "SCORE",
-                            tabIcon: FavoriteIcon,
+                            tabName: "Социальные факторы",
+                            tabIcon: SentimentVeryDissatisfiedIcon,
                             tabContent: (
-                                <p>SCORE</p>
+                                <p>Социальные факторы</p>
                             )
                         },
                         {

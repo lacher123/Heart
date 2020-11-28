@@ -13,7 +13,7 @@ const cardStyle = {
         color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
         background: whiteColor,
         width: "98%",
-        height: "calc(100vh - 50px)",        
+        minHeight: "calc(100vh - 50px)",        
         position: "relative",
         display: "flex",
         flexDirection: "column",

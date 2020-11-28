@@ -37,16 +37,31 @@ namespace ai_center_final
         public string LastName { get; }
         public string Gender { get; }
         public string City { get; }
-
+        public int SBP { get; }
+        public int DBP { get; }
+        public int Weight { get; }
+        public int Height { get; }
+        public int Cholesterol { get; }
+        public bool Smoker { get; }
+        public bool Diabetic { get; }
         public Patient()
         {
             var rng = new Random();
             var g = rng.Next() % 2;
+            var s = rng.Next() % 2;
+            var d = rng.Next() % 2;
             this.FirstName = ((g > 0) ? Male_names[rng.Next(Male_names.Length)] : Female_names[rng.Next(Female_names.Length)]);
             this.MiddleName = Middlenames[rng.Next(Middlenames.Length)] + ((g > 0) ? "ич" : "на");
             this.LastName = Surnames[rng.Next(Surnames.Length)] + ((g > 0) ? "" : "а");
             this.Gender = ((g > 0) ? "m" : "f");
             this.City = Cities[rng.Next(Cities.Length)];
+            this.SBP = rng.Next(100, 180);
+            this.DBP = rng.Next(60, 120);
+            this.Weight = rng.Next(60, 120);
+            this.Height = rng.Next(160, 200);
+            this.Cholesterol = rng.Next(30, 70);
+            this.Smoker = (s > 0);
+            this.Diabetic =(d > 0);
         }
     }
 }
