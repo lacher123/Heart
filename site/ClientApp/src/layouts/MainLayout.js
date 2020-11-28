@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import CustomTabs from "components/CustomTabs/CustomTabs.js";
 import Grid from '@material-ui/core/Grid';
@@ -9,8 +9,13 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardIcon from "components/Card/CardIcon.js";
-//import CardFooter from "components/Card/CardFooter.js";
-//import ChartistGraph from "react-chartist";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 import DescriptionIcon from '@material-ui/icons/Description';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
@@ -19,9 +24,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import Eco from '@material-ui/icons/Eco';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-//import AccessTime from '@material-ui/icons/AccessTime';
-
-//import { emailsSubscriptionChart, completedTasksChart } from "variables/charts";
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
@@ -30,6 +33,24 @@ const useStyles = makeStyles(styles);
 export default function MainLayout(props) {
 
     const classes = useStyles();
+
+    const StyledTableCell = withStyles((theme) => ({
+        head: {
+            backgroundColor: theme.palette.action.disabled,
+            color: theme.palette.common.white,
+        },
+        body: {
+            fontSize: 14,
+        },
+    }))(TableCell);
+
+    const StyledTableRow = withStyles((theme) => ({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: theme.palette.action.hover,
+            },
+        },
+    }))(TableRow);
 
     const { NextPatientCallback, Patient } = props;
 
@@ -43,7 +64,7 @@ export default function MainLayout(props) {
             <div className={classes.mainPanel}>
                 <CustomTabs
                     title={`${Patient.lastName} ${Patient.firstName[0]}.${Patient.middleName[0]}.`}
-                    headerColor="primary"
+                    headerColor="info"
                     tabs={[
                         {
                             tabName: "Карточка",
@@ -186,8 +207,8 @@ export default function MainLayout(props) {
                                     <Grid item xs={7}>
                                         <Grid item>
                                             <Card shadow>
-                                                <CardHeader color="rose" icon>
-                                                    <CardIcon color="rose">
+                                                <CardHeader color="info" icon>
+                                                    <CardIcon color="info">
                                                         <DateRangeIcon />
                                                     </CardIcon>
                                                 </CardHeader>
@@ -229,8 +250,67 @@ export default function MainLayout(props) {
                             tabName: "Прогноз",
                             tabIcon: TrendingUpIcon,
                             tabContent: (
-                                <p>Прогноз</p>
-
+                                <Grid container className={classes.fullWidthGrid} spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <Grid item xs={6}>
+                                                <Card shadow>
+                                                    <CardHeader color={(Patient.prediction.currentRisk === 0) ? "success" : "danger"} icon>
+                                                        <CardIcon color={(Patient.prediction.currentRisk === 0) ? "success" : "danger"}>
+                                                            {(Patient.prediction.currentRisk === 0) ?
+                                                                <ThumbUpIcon /> : <WarningIcon />}
+                                                        </CardIcon>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <h4 className={classes.cardTitle}>{(Patient.prediction.currentRisk === 0) ? "Риск сердечно-сосудистых заболеваний не выявлен" : "Выявлен риск сердечно-сосудистых заболеваний"}</h4>
+                                                        <p>{(Patient.prediction.currentRisk === 0) ? "Хотя риск сердечно-сосудистых заболеваний не выявлен, необходимо обратить внимание на следующие факторы." : "Основное влияние на риск сердечно-сосудистых заболеваний оказывают следующие факторы."}</p>
+                                                    </CardBody>
+                                                </Card>
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                                <Card shadow>
+                                                    <CardHeader color="success" icon>
+                                                        <CardIcon color="success">
+                                                            <TrendingUpIcon />
+                                                        </CardIcon>
+                                                    </CardHeader>
+                                                    <CardBody>
+                                                        <h4 className={classes.cardTitle}>Риск может быть исключен</h4>
+                                                        <p>Для снижения влияния указанных факторов необходимо выполнять предложенные рекомендации.</p>
+                                                    </CardBody>
+                                                </Card>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Grid container>
+                                            <TableContainer component={Paper}>
+                                                <Table className={classes.table} aria-label="simple table">
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <StyledTableCell>Фактор</StyledTableCell>
+                                                            <StyledTableCell align="right">Степень влияния</StyledTableCell>
+                                                            <StyledTableCell align="right">Рекомендации</StyledTableCell>
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        {Patient.prediction.features.map((row) => (
+                                                            (row.currentContribution > 15) ?
+                                                                <StyledTableRow key={row.name}>
+                                                                    <StyledTableCell component="th" scope="row">
+                                                                        {row.feature}
+                                                                    </StyledTableCell>
+                                                                    <StyledTableCell align="right">{row.currentContribution}</StyledTableCell>
+                                                                    <StyledTableCell align="right">Текст рекомендации.</StyledTableCell>
+                                                                </StyledTableRow>
+                                                                : ""
+                                                        ))}
+                                                    </TableBody>
+                                                </Table>
+                                            </TableContainer>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                             )
                         }
                     ]}

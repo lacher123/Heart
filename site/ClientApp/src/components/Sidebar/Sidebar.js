@@ -45,7 +45,7 @@ export default function Sidebar(props) {
                             <h4 className={classes.cardTitle}>{Patient.middleName}</h4>
                             <h4 className={classes.cardTitle}>{Patient.lastName}</h4>
                             <h6 className={classes.cardCategory}>{Patient.city}</h6>
-                            <Button onClick={NextPatientCallback} color="primary" round>
+                            <Button onClick={NextPatientCallback} color="info" round>
                                 Следующий пациент
                             </Button>
                         </CardBody>

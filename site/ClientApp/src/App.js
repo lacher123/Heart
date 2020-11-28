@@ -41,22 +41,23 @@ export default class App extends Component {
         const rndPrediction = {
             ...{
                 features: [...predictions.features],
-                curentContributions: [...predictions.contributions[r]],
-                curentRisk: predictions.predictions[r]
+                currentContributions: [...predictions.contributions[r]],
+                currentRisk: predictions.predictions[r]
             }
         }
-        var prediction = { curentRisk: rndPrediction.curentRisk, tunedRisk: rndPrediction.curentRisk, features: [] };
+        var prediction = { currentRisk: rndPrediction.currentRisk, tunedRisk: rndPrediction.currentRisk, features: [] };
         for (let i = 0; i < rndPrediction.features.length; i++) {
             prediction.features.push({
                 feature: rndPrediction.features[i],
-                curentContribution: Math.floor(Math.abs(rndPrediction.curentContributions[i][0])*1000),
-                tunedContribution: Math.floor(Math.abs(rndPrediction.curentContributions[i][0])*1000)
+                currentContribution: Math.floor(Math.abs(rndPrediction.currentContributions[i][0])*1000),
+                tunedContribution: Math.floor(Math.abs(rndPrediction.currentContributions[i][0])*1000)
                 });
         }
-        prediction.features.sort(function (f1, f2) { return (f1.curentContribution < f2.curentContribution ) })
+        prediction.features.sort(function (f1, f2) { return (f1.currentContribution < f2.currentContribution ) })
         const data = {
-            ...patient, prediction: { ...prediction} };
-        console.log(data);
+            ...patient, prediction: { ...prediction }
+        };
+        //console.log(data.prediction);
         this.setState(data);
     }
 }
