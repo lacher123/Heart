@@ -16,9 +16,9 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import PeopleOutline from '@material-ui/icons/PeopleOutline';
 import WarningIcon from '@material-ui/icons/Warning';
-import InfoIcon from '@material-ui/icons/Info';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import Eco from '@material-ui/icons/Eco';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 //import AccessTime from '@material-ui/icons/AccessTime';
 
 //import { emailsSubscriptionChart, completedTasksChart } from "variables/charts";
@@ -226,17 +226,11 @@ export default function MainLayout(props) {
                             )
                         },
                         {
-                            tabName: "Риск",
-                            tabIcon: WarningIcon,
+                            tabName: "Прогноз",
+                            tabIcon: TrendingUpIcon,
                             tabContent: (
-                                <p>Риск</p>
-                            )
-                        },
-                        {
-                            tabName: "Рекомендации",
-                            tabIcon: InfoIcon,
-                            tabContent: (
-                                <p>Рекомендации</p>
+                                <p>Прогноз</p>
+
                             )
                         }
                     ]}
